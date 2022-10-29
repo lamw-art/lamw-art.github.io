@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   
-  <link rel="canonical" href="http://github.io/friends/"/>
+  <link rel="canonical" href="http://github.io/2022/10/29/xss漏洞详解/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -31,18 +31,21 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>我的朋友们 - 清海个人博客</title>
-  <meta name="keywords" content="null">
+  <title>XSS漏洞详解 - 清海个人博客</title>
+  <meta name="keywords" content="xss,null">
   <meta desc name="description" content="清海个人博客 - Tao - 清海个人博客">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="我的朋友们">
-<meta property="og:url" content="http://github.io/friends/index.html">
+  
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS漏洞详解">
+<meta property="og:url" content="http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="清海个人博客">
+<meta property="og:description" content="xss基础​	   跨站脚本攻击(Cross Site Scripting) 因缩写容易和css混淆,所以称为XSS攻击 ​	   XSS是前端注入型漏洞  攻击者利用开发人员的疏忽在web页面注入恶意代码(一般为javascript代码)进行攻击。 ​		XSS是针对前端对用户层面的攻击 ​	   XSS一般分为三类:存储型,反射型,DOM型 反射型​	   非持久化的攻击,需要受害者去点击构造">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2022-10-25T12:18:29.717Z">
-<meta property="article:modified_time" content="2022-10-25T12:18:29.717Z">
+<meta property="article:published_time" content="2022-10-29T13:00:37.000Z">
+<meta property="article:modified_time" content="2022-10-29T13:02:20.602Z">
 <meta property="article:author" content="Tao">
+<meta property="article:tag" content="xss">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2316,7 +2319,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper friends search' style="display: none;">
+      <div id="none" class='cover-wrapper post search' style="display: none;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://128848-1309005458.cos.ap-beijing.myqcloud.com/2.jpg"></div>
 
@@ -2380,8 +2383,16 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-  <article id="friends" class="md post article article-entry l_friends white-box reveal shadow floatable blur article-type-friends" itemscope itemprop="blogPost">
-    
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/10/29/XSS漏洞详解/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
 
 
   
@@ -2394,7 +2405,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       <h1 class="title" itemprop="name headline">
-        我的朋友们
+        XSS漏洞详解
       </h1>
       <div class='new-meta-box'>
         
@@ -2411,14 +2422,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
             
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+      </span>
+    
+  </div>
+
 
           
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-25T20:18:29+08:00">
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-10-29T21:00:37+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Oct 25, 2022</p>
+    <p>发布于：Oct 29, 2022</p>
   </a>
 </div>
 
@@ -2439,37 +2460,115 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
 
-    
-    
-      
-        <div class='friends-group'>
-          <br>
-          <h2 class='friend-header'>
-            师从
-          </h2>
-          
-            <p>大黑客小迪</p>
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h2 id="xss基础"><a href="#xss基础" class="headerlink" title="xss基础"></a>xss基础</h2><p>​	   跨站脚本攻击(Cross Site Scripting) 因缩写容易和css混淆,所以称为XSS攻击</p>
+<p>​	   XSS是前端注入型漏洞  攻击者利用开发人员的疏忽在web页面注入恶意代码(一般为javascript代码)进行攻击。</p>
+<p>​		XSS是针对前端对用户层面的攻击</p>
+<p>​	   XSS一般分为三类:存储型,反射型,DOM型</p>
+<h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p>​	   非持久化的攻击,需要受害者去点击构造的恶意url</p>
+<p>​      发起请求并且参数会出现在url上,服务端接收处理后将其内容返回给浏览器端</p>
+<h3 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h3><p>​	   持久化的攻击,恶意代码被存储在目标站点的服务器中,每次访问对应页面都会触发  svg 和html文件上传</p>
+<h3 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h3><p>​	  完全不经过后端,和反射性很相似(可以看作是特殊的反射型xss),通过传入参数,参数被开发使用js将该参数渲染到前端页面上。</p>
+<h2 id="payload的构造"><a href="#payload的构造" class="headerlink" title="payload的构造"></a>payload的构造</h2><p>xss payload 一般是事件或者标签</p>
+<h3 id="常用弹窗方式"><a href="#常用弹窗方式" class="headerlink" title="常用弹窗方式"></a>常用弹窗方式</h3><p>alert ,confirm,prompt, console  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="string">&quot;1&quot;</span>)&lt;/script&gt; </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>confirm(2)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>prompt(3)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">alert</span>(<span class="number">4</span>))</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-          
-          
-            <div class='simpleuser-group'>
-              
-                
-                  <a class="simpleuser" target="_blank" rel="external noopener noreferrer" href="http://www.xiaodi8.com/# 链接">
-                    <img src="http://www.xiaodi8.com/zb_users/upload/2019/12/201912151576406008190696.png# 头像" class="lazyload" data-srcset="http://www.xiaodi8.com/zb_users/upload/2019/12/201912151576406008190696.png# 头像" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
-                    <span>小迪渗透吧</span>
-                  </a>
-                
-              
-                
-              
-            </div>
-          
-        </div>
+<h3 id="常用标签和对应事件"><a href="#常用标签和对应事件" class="headerlink" title="常用标签和对应事件"></a>常用标签和对应事件</h3><p>常见的标签有 a标签,input标签,iframe标签 img标签</p>
+<p>无论是什么标签我们要做的就是一件事 </p>
+<p><strong>闭合前面(引号闭合属性,尖括号闭合标签),构造新的语句(事件或者新的标签)</strong></p>
+<h4 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h4><p>经常使用伪协议来绕过   同样可以使用伪协议的标签有 iframe标签 form表单的action属性(需要配合提交按钮才能触发)</p>
+<p>a标签中常用的事件  onclick </p>
+<p>代码示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">伪协议:</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(1)&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(1)&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">点击事件:</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://baidu.com&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(1)&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h4><p>input标签是无法使用伪协议的 只能构造事件或者将标签闭合插入新的标签</p>
+<p>另外有些情况下 input标签被隐藏,我们可以使用 type&#x3D;text 覆盖 hidden属性 </p>
+<p>还能直接利用onfocus事件 配合autofocus 自动聚焦 直接不需要点击触发</p>
+<h4 id="img标签"><a href="#img标签" class="headerlink" title="img标签"></a>img标签</h4><p>这个标签 是经常在闭合前面的标签后使用的 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>其余标签没有很好的例子 就先不做讨论 后续找到相关案例可能会补上</p>
+</blockquote>
+<h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><p>有些情况下我们可以使用html实体化编码来绕过对关键字的过滤</p>
+<p>这个有些情况我不太理解,另外有的时候无法闭合可以使用’ 来进行闭合</p>
+<h3 id="self-xss-到可以利用的xss"><a href="#self-xss-到可以利用的xss" class="headerlink" title="self xss 到可以利用的xss"></a>self xss 到可以利用的xss</h3><p>存储型的xss很多情况下都可能只是self xss 我们需要对其进行扩大危害才能证明其是一个有效的漏洞</p>
+<p>常用的思路 :   例如搜索历史,因为搜索功能往往会是get传参我们可以利用url来让其不知情的情况下进行了搜索然后触发我们的xss</p>
+<p>csrf+xss  例如修改名字才能触发的xss 我们制作csrf来让用户的名字修改为我们的xsspayload</p>
+<h3 id="绕waf-bpass"><a href="#绕waf-bpass" class="headerlink" title="绕waf bpass"></a>绕waf bpass</h3><p>分段传入值 触发xss,利用对方的业务来拼接我们的payload</p>
+<p>也可以利用参数来进行分段绕过waf的关键字匹配</p>
+<h2 id="xss-labs-通关"><a href="#xss-labs-通关" class="headerlink" title="xss-labs 通关"></a>xss-labs 通关</h2><p>在了解了基础的知识后可以利用该靶场来巩固加深知识</p>
+<h3 id="1-7关"><a href="#1-7关" class="headerlink" title="1-7关"></a>1-7关</h3><p>第一关:  完全-没有过滤</p>
+<p> payload: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第二关: <h2>标签 进行了实体化过滤 (<strong>htmlentities函数</strong>) 但是input标签未作处理</p>
+<p>payload:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onfocus=alert(1) //</span></span><br><span class="line"><span class="string">&quot;</span>&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>第三关:和上关相比 input标签进行了过滤 无法使用双引号但是可以使用单引号闭合value</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; onfocus=alert(1) //</span></span><br><span class="line"><span class="string">&#x27;</span>&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>第四关: input标签过滤了尖括号(&lt; &gt;)但是采用事件一样可以所以上一关的第一个payload直接使用即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; onfocus=alert(1) //</span></span><br></pre></td></tr></table></figure>
+
+<p>第五关:  进行了匹配关键字过滤(on和script会过滤为o_n  scr_ipt) 但是尖括号 “ 都正常 尝试使用不带事件和script的payload 伪协议</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&gt; &lt;a href=javascript:alert(1)&gt;123//</span></span><br></pre></td></tr></table></figure>
+
+<p>第六关: 和上关一样也进行了关键字过滤,尝试大小写 发现并没有进行大小写转换 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&gt; &lt;a Href=javascript:alert(1)&gt;123//</span></span><br></pre></td></tr></table></figure>
+
+<p>第七关: 对关键字进行了过滤,大小写进行了转换,但是发现对方对关键字是替换为空,尝试进行双写绕过</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; oonnblur=alert(1)//</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-9-关"><a href="#8-9-关" class="headerlink" title="8-9 关"></a>8-9 关</h3><p>第8关: 添加友情链接,会将你的输入添加到href属性中 尝试javascript:alert(1) 发现 script被过滤为 scr_ipt,开始尝试闭合href 使用事件但是on 也被过滤 尝试进行编码绕过</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;<span class="attr">pt</span>:<span class="title function_">alert</span>(<span class="number">1</span>)		</span><br></pre></td></tr></table></figure>
+
+<p>第9关: 还是添加友情连接 尝试上一关的payload发现输出您的链接不合法,怀疑是对其做了校验 尝试后发现只有 添加的数据中带有 http:&#x2F;&#x2F; 时才会正常显示 尝试编码绕过加上http:&#x2F;&#x2F;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)   //http://</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-14-关"><a href="#10-14-关" class="headerlink" title="10- 14 关"></a>10- 14 关</h3><p>第10关: 没有输入框,邮件查看源码发现隐藏的input标签,经过测试三个参数后发现只有t_sort会被输出到input标签,闭合引号构造事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onblur=alert(1) type=text//</span></span><br></pre></td></tr></table></figure>
+
+<p>第11关:同上关,发现新增的参数t_ref,尝试get请求但是没有输出,根据其意思猜测为数据请求包的ref字段,burp抓包修改ref字段为paylaod成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onblur=alert(1) type=text//</span></span><br></pre></td></tr></table></figure>
+
+<p>第12关:同上关,ua头参数</p>
+<p>第13关:同上,cookie修改为paylaod</p>
+<p>第14关: 代码中的网址失效 无法进行测试</p>
+<h3 id="15关"><a href="#15关" class="headerlink" title="15关"></a>15关</h3><p>第15关:什么也没有,但是F12阅读源码发现包含了 angular.min.js这个框架并且使用了 ng-include:   怀疑这里存在参数 fuzz 发现参数是src 并且参数值会被带入 ng-include 所以我们利用该参数包含之前关卡页面实现xss </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?src=<span class="string">&#x27;level1.php?name=&lt;img src=x onerror=alert(xss)&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="16关"><a href="#16关" class="headerlink" title="16关"></a>16关</h3><p>只有一个输出点 尝试直接使用script标签 发现被过滤 尝试其他标签 img标签 发现正常但是空格会被过滤导致不能生效 产生</p>
+<h3 id="17关"><a href="#17关" class="headerlink" title="17关"></a>17关</h3><p>两个参数会被接收组合在embed标签 ,同input标签一样使用引号闭合前面 构造事件进行弹窗 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?arg01=<span class="number">1</span>&amp;arg02=<span class="string">&quot;2 onfocus=alert(1)//</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="18关"><a href="#18关" class="headerlink" title="18关"></a>18关</h3><p>和上一关一摸一样 直接使用上一关的payload</p>
+<h3 id="19关和20关较为复杂先不研究"><a href="#19关和20关较为复杂先不研究" class="headerlink" title="19关和20关较为复杂先不研究"></a>19关和20关较为复杂先不研究</h3><h2 id="xss的危害"><a href="#xss的危害" class="headerlink" title="xss的危害"></a>xss的危害</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1、网络钓鱼，包括盗取各类用户账号；</span><br><span class="line">2、窃取用户cookies资料，从而获取用户隐私信息，或利用用户身份进一步对网站执行操作；</span><br><span class="line">3、劫持用户(浏览器)会话，从而执行任意操作，例如进行非法转账、强制发表日志、发送电子邮件等；</span><br><span class="line">4、强制弹出广告页面、刷流量等；</span><br><span class="line">5、网页挂马，进行恶意操作，例如任意篡改页面信息、删除文章等；</span><br><span class="line">6、进行大量的客户端攻击，如DDoS攻击；</span><br><span class="line">7、获取客户端信息，例如用户的浏览历史、真实IP、开放端口等；</span><br><span class="line">8、控制受害者机器向其他网站发起攻击；</span><br><span class="line">9、结合其他漏洞，如CSRF漏洞，实施进一步作恶；</span><br><span class="line">10、提升用户权限，包括进一步渗透网站；</span><br><span class="line">11、传播跨站脚本蠕虫等；</span><br></pre></td></tr></table></figure>
+
+
+
+<p>理论上很多但是大部分情况下也就是打cookie</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-    
-    <br><br>
-    
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
+      
+    </div>
+  
+  
     
 
 
@@ -2477,10 +2576,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-25T20:18:29+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-29T21:02:20+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Oct 25, 2022</p>
+    <p>更新于：Oct 29, 2022</p>
   </a>
 </div>
 
@@ -2488,6 +2587,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/xss/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>xss</p></a></div>
+  <span hidden itemprop="keywords">xss</span>
+
 
         
       
@@ -2499,7 +2602,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://github.io/friends/index.html&title=我的朋友们 - 清海个人博客&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/&title=XSS漏洞详解 - 清海个人博客&summary="
           
           >
           
@@ -2511,7 +2614,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://github.io/friends/index.html&title=我的朋友们 - 清海个人博客&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/&title=XSS漏洞详解 - 清海个人博客&summary="
           
           >
           
@@ -2523,7 +2626,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://github.io/friends/index.html&title=我的朋友们 - 清海个人博客&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/&title=XSS漏洞详解 - 清海个人博客&summary="
           
           >
           
@@ -2550,14 +2653,33 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   </div>
 
 
-  </article>
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2022/10/27/test/'>
+          <p class='title'>test<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>这是一篇测试文章test
+</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
 
   
 
 
   <article class="post white-box shadow floatable blur" id="comments">
     <span hidden>
-      <meta itemprop="discussionUrl" content="/friends/index.html#comments">
+      <meta itemprop="discussionUrl" content="/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/index.html#comments">
     </span>
     <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
@@ -2565,6 +2687,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div id="layoutHelper-comments"></div>
 
   </article>
+
+
 
 
 
@@ -2587,9 +2711,66 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-  <div class="">
-    <!-- pjax占位 -->
-  </div>
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E5%9F%BA%E7%A1%80"><span class="toc-text">xss基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#payload%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-text">payload的构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BC%B9%E7%AA%97%E6%96%B9%E5%BC%8F"><span class="toc-text">常用弹窗方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%92%8C%E5%AF%B9%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="toc-text">常用标签和对应事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a%E6%A0%87%E7%AD%BE"><span class="toc-text">a标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#input%E6%A0%87%E7%AD%BE"><span class="toc-text">input标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#img%E6%A0%87%E7%AD%BE"><span class="toc-text">img标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-text">编码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#self-xss-%E5%88%B0%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E7%9A%84xss"><span class="toc-text">self xss 到可以利用的xss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95waf-bpass"><span class="toc-text">绕waf bpass</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-%E9%80%9A%E5%85%B3"><span class="toc-text">xss-labs 通关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7%E5%85%B3"><span class="toc-text">1-7关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">标签 进行了实体化过滤 (htmlentities函数) 但是input标签未作处理
+payload:
+12&quot; onfocus&#x3D;alert(1) &#x2F;&#x2F;&quot;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
+
+第三关:和上关相比 input标签进行了过滤 无法使用双引号但是可以使用单引号闭合value
+12&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;&#39;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
+
+第四关: input标签过滤了尖括号(&lt; &gt;)但是采用事件一样可以所以上一关的第一个payload直接使用即可
+1&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;
+
+第五关:  进行了匹配关键字过滤(on和script会过滤为o_n  scr_ipt) 但是尖括号 “ 都正常 尝试使用不带事件和script的payload 伪协议
+1&quot;&gt; &lt;a href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
+
+第六关: 和上关一样也进行了关键字过滤,尝试大小写 发现并没有进行大小写转换 
+1&quot;&gt; &lt;a Href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
+
+第七关: 对关键字进行了过滤,大小写进行了转换,但是发现对方对关键字是替换为空,尝试进行双写绕过
+1&quot; oonnblur&#x3D;alert(1)&#x2F;&#x2F;
+
+8-9 关第8关: 添加友情链接,会将你的输入添加到href属性中 尝试javascript:alert(1) 发现 script被过滤为 scr_ipt,开始尝试闭合href 使用事件但是on 也被过滤 尝试进行编码绕过
+1java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)		
+
+第9关: 还是添加友情连接 尝试上一关的payload发现输出您的链接不合法,怀疑是对其做了校验 尝试后发现只有 添加的数据中带有 http:&#x2F;&#x2F; 时才会正常显示 尝试编码绕过加上http:&#x2F;&#x2F;
+1java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)   &#x2F;&#x2F;http:&#x2F;&#x2F;
+
+10- 14 关第10关: 没有输入框,邮件查看源码发现隐藏的input标签,经过测试三个参数后发现只有t_sort会被输出到input标签,闭合引号构造事件
+1&quot; onblur&#x3D;alert(1) type&#x3D;text&#x2F;&#x2F;
+
+第11关:同上关,发现新增的参数t_ref,尝试get请求但是没有输出,根据其意思猜测为数据请求包的ref字段,burp抓包修改ref字段为paylaod成功
+1&quot; onblur&#x3D;alert(1) type&#x3D;text&#x2F;&#x2F;
+
+第12关:同上关,ua头参数
+第13关:同上,cookie修改为paylaod
+第14关: 代码中的网址失效 无法进行测试
+15关第15关:什么也没有,但是F12阅读源码发现包含了 angular.min.js这个框架并且使用了 ng-include:   怀疑这里存在参数 fuzz 发现参数是src 并且参数值会被带入 ng-include 所以我们利用该参数包含之前关卡页面实现xss 
+1?src&#x3D;&#39;level1.php?name&#x3D;&lt;img src&#x3D;x onerror&#x3D;alert(xss)&gt;&#39;
+
+16关只有一个输出点 尝试直接使用script标签 发现被过滤 尝试其他标签 img标签 发现正常但是空格会被过滤导致不能生效 产生
+17关两个参数会被接收组合在embed标签 ,同input标签一样使用引号闭合前面 构造事件进行弹窗 
+1?arg01&#x3D;1&amp;arg02&#x3D;&quot;2 onfocus&#x3D;alert(1)&#x2F;&#x2F;
+
+18关和上一关一摸一样 直接使用上一关的payload
+19关和20关较为复杂先不研究xss的危害12345678910111、网络钓鱼，包括盗取各类用户账号；2、窃取用户cookies资料，从而获取用户隐私信息，或利用用户身份进一步对网站执行操作；3、劫持用户(浏览器)会话，从而执行任意操作，例如进行非法转账、强制发表日志、发送电子邮件等；4、强制弹出广告页面、刷流量等；5、网页挂马，进行恶意操作，例如任意篡改页面信息、删除文章等；6、进行大量的客户端攻击，如DDoS攻击；7、获取客户端信息，例如用户的浏览历史、真实IP、开放端口等；8、控制受害者机器向其他网站发起攻击；9、结合其他漏洞，如CSRF漏洞，实施进一步作恶；10、提升用户权限，包括进一步渗透网站；11、传播跨站脚本蠕虫等；
+
+
+
+理论上很多但是大部分情况下也就是打cookie
+</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-9-%E5%85%B3"><span class="toc-text">8-9 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-14-%E5%85%B3"><span class="toc-text">10- 14 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E5%85%B3"><span class="toc-text">15关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E5%85%B3"><span class="toc-text">16关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E5%85%B3"><span class="toc-text">17关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E5%85%B3"><span class="toc-text">18关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E5%85%B3%E5%92%8C20%E5%85%B3%E8%BE%83%E4%B8%BA%E5%A4%8D%E6%9D%82%E5%85%88%E4%B8%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">19关和20关较为复杂先不研究</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-text">xss的危害</span></a></li></ol>
+    </div>
+  </section>
 
   
 
@@ -2636,13 +2817,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3268,7 +3450,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"我的朋友们","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/friends/index.html"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/friends/index.html","wordCount":0,"datePublished":"2022-10-25T12:18:29.717Z","dateModified":"2022-10-25T12:18:29.717Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}},{"@type":"ListItem","position":2,"item":{"@id":"http://github.io/categories/网络安全/","name":"网络安全"}},{"@type":"ListItem","position":3,"item":{"@id":"http://github.io/2022/10/29/XSS漏洞详解/","name":"XSS漏洞详解"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"XSS漏洞详解","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/","wordCount":0,"datePublished":"2022-10-29T13:00:37.000Z","dateModified":"2022-10-29T13:02:20.602Z","articleSection":"网络安全","keywords":"xss","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
