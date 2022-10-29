@@ -43,7 +43,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-10-29T13:00:37.000Z">
-<meta property="article:modified_time" content="2022-10-29T13:08:07.058Z">
+<meta property="article:modified_time" content="2022-10-29T13:10:13.367Z">
 <meta property="article:author" content="Tao">
 <meta property="article:tag" content="xss">
 <meta name="twitter:card" content="summary">
@@ -1627,7 +1627,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1667048905610),
+    lastupdate: new Date(1667049026025),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2505,7 +2505,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p> payload: </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>第二关: <h2>标签 进行了实体化过滤 (<strong>htmlentities函数</strong>) 但是input标签未作处理</p>
+<p>第二关: “h2”标签 进行了实体化过滤 (<strong>htmlentities函数</strong>) 但是input标签未作处理</p>
 <p>payload:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; onfocus=alert(1) //</span></span><br><span class="line"><span class="string">&quot;</span>&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
@@ -2536,6 +2536,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 <h3 id="8-9-关"><a href="#8-9-关" class="headerlink" title="8-9 关"></a>8-9 关</h3><p>第8关: 添加友情链接,会将你的输入添加到href属性中 尝试javascript:alert(1) 发现 script被过滤为 scr_ipt,开始尝试闭合href 使用事件但是on 也被过滤 尝试进行编码绕过</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;<span class="attr">pt</span>:<span class="title function_">alert</span>(<span class="number">1</span>)		</span><br></pre></td></tr></table></figure>
+
+
 
 <p>第9关: 还是添加友情连接 尝试上一关的payload发现输出您的链接不合法,怀疑是对其做了校验 尝试后发现只有 添加的数据中带有 http:&#x2F;&#x2F; 时才会正常显示 尝试编码绕过加上http:&#x2F;&#x2F;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)   //http://</span><br></pre></td></tr></table></figure>
@@ -2586,7 +2588,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-29T21:08:07+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2022-10-29T21:10:13+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：Oct 29, 2022</p>
@@ -2731,64 +2733,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E5%9F%BA%E7%A1%80"><span class="toc-text">xss基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#payload%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-text">payload的构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BC%B9%E7%AA%97%E6%96%B9%E5%BC%8F"><span class="toc-text">常用弹窗方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%92%8C%E5%AF%B9%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="toc-text">常用标签和对应事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a%E6%A0%87%E7%AD%BE"><span class="toc-text">a标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#input%E6%A0%87%E7%AD%BE"><span class="toc-text">input标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#img%E6%A0%87%E7%AD%BE"><span class="toc-text">img标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-text">编码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#self-xss-%E5%88%B0%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E7%9A%84xss"><span class="toc-text">self xss 到可以利用的xss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95waf-bpass"><span class="toc-text">绕waf bpass</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-%E9%80%9A%E5%85%B3"><span class="toc-text">xss-labs 通关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7%E5%85%B3"><span class="toc-text">1-7关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">标签 进行了实体化过滤 (htmlentities函数) 但是input标签未作处理
-payload:
-12&quot; onfocus&#x3D;alert(1) &#x2F;&#x2F;&quot;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
-
-
-
-第三关:和上关相比 input标签进行了过滤 无法使用双引号但是可以使用单引号闭合value
-12&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;&#39;&gt; &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
-
-
-
-第四关: input标签过滤了尖括号(&lt; &gt;)但是采用事件一样可以所以上一关的第一个payload直接使用即可
-1&#39; onfocus&#x3D;alert(1) &#x2F;&#x2F;
-
-
-
-第五关:  进行了匹配关键字过滤(on和script会过滤为o_n  scr_ipt) 但是尖括号 “ 都正常 尝试使用不带事件和script的payload 伪协议
-1&quot;&gt; &lt;a href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
-
-
-
-第六关: 和上关一样也进行了关键字过滤,尝试大小写 发现并没有进行大小写转换 
-1&quot;&gt; &lt;a Href&#x3D;javascript:alert(1)&gt;123&#x2F;&#x2F;
-
-
-
-第七关: 对关键字进行了过滤,大小写进行了转换,但是发现对方对关键字是替换为空,尝试进行双写绕过
-1&quot; oonnblur&#x3D;alert(1)&#x2F;&#x2F;
-
-8-9 关第8关: 添加友情链接,会将你的输入添加到href属性中 尝试javascript:alert(1) 发现 script被过滤为 scr_ipt,开始尝试闭合href 使用事件但是on 也被过滤 尝试进行编码绕过
-1java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)		
-
-第9关: 还是添加友情连接 尝试上一关的payload发现输出您的链接不合法,怀疑是对其做了校验 尝试后发现只有 添加的数据中带有 http:&#x2F;&#x2F; 时才会正常显示 尝试编码绕过加上http:&#x2F;&#x2F;
-1java&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;pt:alert(1)   &#x2F;&#x2F;http:&#x2F;&#x2F;
-
-10- 14 关第10关: 没有输入框,邮件查看源码发现隐藏的input标签,经过测试三个参数后发现只有t_sort会被输出到input标签,闭合引号构造事件
-1&quot; onblur&#x3D;alert(1) type&#x3D;text&#x2F;&#x2F;
-
-第11关:同上关,发现新增的参数t_ref,尝试get请求但是没有输出,根据其意思猜测为数据请求包的ref字段,burp抓包修改ref字段为paylaod成功
-1&quot; onblur&#x3D;alert(1) type&#x3D;text&#x2F;&#x2F;
-
-第12关:同上关,ua头参数
-第13关:同上,cookie修改为paylaod
-第14关: 代码中的网址失效 无法进行测试
-15关第15关:什么也没有,但是F12阅读源码发现包含了 angular.min.js这个框架并且使用了 ng-include:   怀疑这里存在参数 fuzz 发现参数是src 并且参数值会被带入 ng-include 所以我们利用该参数包含之前关卡页面实现xss 
-1?src&#x3D;&#39;level1.php?name&#x3D;&lt;img src&#x3D;x onerror&#x3D;alert(xss)&gt;&#39;
-
-16关只有一个输出点 尝试直接使用script标签 发现被过滤 尝试其他标签 img标签 发现正常但是空格会被过滤导致不能生效 产生
-17关两个参数会被接收组合在embed标签 ,同input标签一样使用引号闭合前面 构造事件进行弹窗 
-1?arg01&#x3D;1&amp;arg02&#x3D;&quot;2 onfocus&#x3D;alert(1)&#x2F;&#x2F;
-
-18关和上一关一摸一样 直接使用上一关的payload
-19关和20关较为复杂先不研究xss的危害12345678910111、网络钓鱼，包括盗取各类用户账号；2、窃取用户cookies资料，从而获取用户隐私信息，或利用用户身份进一步对网站执行操作；3、劫持用户(浏览器)会话，从而执行任意操作，例如进行非法转账、强制发表日志、发送电子邮件等；4、强制弹出广告页面、刷流量等；5、网页挂马，进行恶意操作，例如任意篡改页面信息、删除文章等；6、进行大量的客户端攻击，如DDoS攻击；7、获取客户端信息，例如用户的浏览历史、真实IP、开放端口等；8、控制受害者机器向其他网站发起攻击；9、结合其他漏洞，如CSRF漏洞，实施进一步作恶；10、提升用户权限，包括进一步渗透网站；11、传播跨站脚本蠕虫等；
-
-
-
-理论上很多但是大部分情况下也就是打cookie
-</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-9-%E5%85%B3"><span class="toc-text">8-9 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-14-%E5%85%B3"><span class="toc-text">10- 14 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E5%85%B3"><span class="toc-text">15关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E5%85%B3"><span class="toc-text">16关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E5%85%B3"><span class="toc-text">17关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E5%85%B3"><span class="toc-text">18关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E5%85%B3%E5%92%8C20%E5%85%B3%E8%BE%83%E4%B8%BA%E5%A4%8D%E6%9D%82%E5%85%88%E4%B8%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">19关和20关较为复杂先不研究</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-text">xss的危害</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E5%9F%BA%E7%A1%80"><span class="toc-text">xss基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-text">存储型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8B"><span class="toc-text">DOM型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#payload%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-text">payload的构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BC%B9%E7%AA%97%E6%96%B9%E5%BC%8F"><span class="toc-text">常用弹窗方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%92%8C%E5%AF%B9%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="toc-text">常用标签和对应事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a%E6%A0%87%E7%AD%BE"><span class="toc-text">a标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#input%E6%A0%87%E7%AD%BE"><span class="toc-text">input标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#img%E6%A0%87%E7%AD%BE"><span class="toc-text">img标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-text">编码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#self-xss-%E5%88%B0%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E7%9A%84xss"><span class="toc-text">self xss 到可以利用的xss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95waf-bpass"><span class="toc-text">绕waf bpass</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss-labs-%E9%80%9A%E5%85%B3"><span class="toc-text">xss-labs 通关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7%E5%85%B3"><span class="toc-text">1-7关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-9-%E5%85%B3"><span class="toc-text">8-9 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-14-%E5%85%B3"><span class="toc-text">10- 14 关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E5%85%B3"><span class="toc-text">15关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E5%85%B3"><span class="toc-text">16关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E5%85%B3"><span class="toc-text">17关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E5%85%B3"><span class="toc-text">18关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E5%85%B3%E5%92%8C20%E5%85%B3%E8%BE%83%E4%B8%BA%E5%A4%8D%E6%9D%82%E5%85%88%E4%B8%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">19关和20关较为复杂先不研究</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-text">xss的危害</span></a></li></ol>
     </div>
   </section>
 
@@ -3470,7 +3415,7 @@ payload:
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}},{"@type":"ListItem","position":2,"item":{"@id":"http://github.io/categories/网络安全/","name":"网络安全"}},{"@type":"ListItem","position":3,"item":{"@id":"http://github.io/2022/10/29/XSS漏洞详解/","name":"XSS漏洞详解"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"XSS漏洞详解","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/","wordCount":0,"datePublished":"2022-10-29T13:00:37.000Z","dateModified":"2022-10-29T13:08:07.058Z","articleSection":"网络安全","keywords":"xss","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","sameAs":["https://github.com/volantis-x"],"description":"清海个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://github.io/","name":"清海个人博客"}},{"@type":"ListItem","position":2,"item":{"@id":"http://github.io/categories/网络安全/","name":"网络安全"}},{"@type":"ListItem","position":3,"item":{"@id":"http://github.io/2022/10/29/XSS漏洞详解/","name":"XSS漏洞详解"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"清海个人博客","url":"http://github.io/","keywords":null,"description":"清海个人博客","author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/","description":"清海个人博客"},"publisher":{"@type":"Organization","name":"清海个人博客","url":"http://github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"http://github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"XSS漏洞详解","description":"清海个人博客","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/"},"author":{"@type":"Person","name":"Tao","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"http://github.io/"},"publisher":{"@type":"Organization","name":"清海个人博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"http://github.io/2022/10/29/XSS%E6%BC%8F%E6%B4%9E%E8%AF%A6%E8%A7%A3/","wordCount":0,"datePublished":"2022-10-29T13:00:37.000Z","dateModified":"2022-10-29T13:10:13.367Z","articleSection":"网络安全","keywords":"xss","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
