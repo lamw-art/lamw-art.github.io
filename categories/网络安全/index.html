@@ -1624,7 +1624,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1667824913374),
+    lastupdate: new Date(1668872018065),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2390,9 +2390,359 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/11/19/Src挖掘-SSRF/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/11/19/Src%E6%8C%96%E6%8E%98-SSRF/"  itemprop="url">
+        Src挖掘-SSRF
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        ssrf基础
+利用一个可以发起网络请求的服务器当作跳板来攻击其内部服务器
+
+SSRF (Server-Side Request Forgery) 即服务端请求伪造，从字面意思上理解就是伪造一个服务端请求，也即是说攻击者伪造服务端的请求发起攻击，攻击者借由服务端为跳板来攻击目标系统。 通过跳板直接请求对方的内网,探测对方的内网
+利用SSRF可以进行内外网的端口和服务探测、主机本地敏感数据的读取...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-11-19T23:31:27+08:00">2022-11-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/11/19/Src%E6%8C%96%E6%8E%98-SSRF/' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/11/19/Src挖掘-XXE/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/11/19/Src%E6%8C%96%E6%8E%98-XXE/"  itemprop="url">
+        Src挖掘-XXE
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        XXE漏洞xml和DTDXML 指可扩展标记语言（eXtensible Markup Language）。
+XML 被设计用来传输和存储数据，不用于表现和展示数据，HTML 则用来表现数据
+文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。
+DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用
+DTD可以直接在xml文档写入,也可以单独形...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-11-19T23:30:31+08:00">2022-11-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/11/19/Src%E6%8C%96%E6%8E%98-XXE/' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/11/19/Src挖掘-cors/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/11/19/Src%E6%8C%96%E6%8E%98-cors/"  itemprop="url">
+        Src挖掘-cors
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        corscors基础(使用CORS解决跨域问题 - 简书 (jianshu.com))
+跨域是指跨域名的访问  同域名不同端口的也属于跨域访问 
+跨域问题是对ajax请求的一个限制,能够有效的阻止跨站攻击
+但是阻止跨域会带来一些不便,所以我们采用其他技术去支持某些特定情况下的跨域请求资源
+目前cors是最流行的一种
+cors 是一个规定的W3C标准,全称是”跨域资源共享” 它允许浏览器向跨域...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-11-19T23:28:56+08:00">2022-11-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/11/19/Src%E6%8C%96%E6%8E%98-cors/' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/11/19/Src挖掘-越权/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/11/19/Src%E6%8C%96%E6%8E%98-%E8%B6%8A%E6%9D%83/"  itemprop="url">
+        Src挖掘-越权
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        越权漏洞基础越权漏洞:攻击者可以通过某些方法获得不属于它的权限,根据本身权限和获得的权限可以划分为平行越权和垂直越权
+这里的某些方法可能是更改参数,思路开阔一切都有可能,要找到对方在进行权限判断的时候的关键参数和逻辑
+这种漏洞常常出现在对方需要根据我们的权限来提供内容的时候,增删改查这种需要根据权限提供对应操作的地方 类似越权评论,越权删除等
+这个漏洞没啥理论知识。直接收集实战案例,多思考即...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-11-19T23:26:22+08:00">2022-11-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/11/19/Src%E6%8C%96%E6%8E%98-%E8%B6%8A%E6%9D%83/' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="http://github.io/2022/11/19/java安全day1-反射/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="清海个人博客">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="清海个人博客">
+    <meta itemprop="description" content="清海个人博客">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2022/11/19/java%E5%AE%89%E5%85%A8day1-%E5%8F%8D%E5%B0%84/"  itemprop="url">
+        java安全day1:反射
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        反射java反射就是再运行状态中,对于任意一个类,都能知道这个类的所有方法和属性;对于任意一个对象都能调用它的方法,并且改变它的属性
+反射这个机制让静态语言有了动态性(java语言会被看做准动态语言)
+java反射的关键就在于获取指定类的Class对象
+
+一个类在 JVM 中只会有一个 Class 实例
+
+获得Class对象的三种方式:
+
+Class.forName(“类的名字”)
+对象.g...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time itemprop="dateCreated datePublished" datetime="2022-11-19T23:23:18+08:00">2022-11-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url"><span itemprop="name">网络安全</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/11/19/java%E5%AE%89%E5%85%A8day1-%E5%8F%8D%E5%B0%84/' itemprop="url">
+            Read More
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -2564,12 +2914,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/categories/%E6%9D%82%E8%AE%B0/" href="/categories/%E6%9D%82%E8%AE%B0/"
             active-action="action-categoriesE69D82E8AEB0"
-            ><div class='name'>杂记</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>杂记</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"
             active-action="action-categoriesE7BD91E7BB9CE5AE89E585A8"
-            ><div class='name'>网络安全</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>网络安全</div><div class='badge'>(6)</div></a></li>
         
       </ul>
     </div>
@@ -2594,7 +2944,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/tags/xss/" style="font-size: 14px; color: #999">xss</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/" style="font-size: 14px; color: #999">人生感悟</a> <a href="/tags/%E5%BD%B1%E8%AF%84/" style="font-size: 14px; color: #999">影评</a>
+      <a href="/tags/java%E5%AE%89%E5%85%A8/" style="font-size: 14px; color: #999">java安全</a> <a href="/tags/src%E6%8C%96%E6%8E%98/" style="font-size: 24px; color: #555">src挖掘</a> <a href="/tags/xss/" style="font-size: 14px; color: #999">xss</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/" style="font-size: 14px; color: #999">人生感悟</a>
     </div>
   </section>
 
